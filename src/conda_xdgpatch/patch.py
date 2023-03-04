@@ -11,18 +11,19 @@ sitecustomize-conda-xdgpatch
 
 
 """
-import os 
+import os
 from os.path import join
 
 import conda.core.envs_manager
 from conda.common.path import expand
 
+pre_patched_value = conda.core.envs_manager.get_user_environments_txt_file
 
 def get_user_environments_txt_file(userhome:str="~") -> str:
     """
     Use ~/.cache/conda/environments.txt instead of
     ~/.conda/environments.txt
-    
+
     /opt/conda/etc/environments.txt
     """
     cache_dir = os.getenv("XDG_CACHE_HOME", join(userhome, '.cache'))
@@ -30,5 +31,10 @@ def get_user_environments_txt_file(userhome:str="~") -> str:
 
 
 def patch() -> None:
-    """monkeypatch the original function"""
+    """Monkeypatch the original function."""
     conda.core.envs_manager.get_user_environments_txt_file = get_user_environments_txt_file
+
+
+def patch() -> None:
+    """Unpatch the original function."""
+    conda.core.envs_manager.get_user_environments_txt_file = pre_patched_value

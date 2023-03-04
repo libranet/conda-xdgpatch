@@ -28,34 +28,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-
-## Unit test / coverage reports
-#htmlcov/
-#.tox/
-#.nox/
-#.coverage
-#.coverage.*
-#.cache
-#_coverage
-#nosetests.xml
-#coverage.xml
-#*.cover
-#.hypothesis/
-#.pytest_cache/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# linux-desktop
-.directory
-
 # Environments
 .env
 .venv
