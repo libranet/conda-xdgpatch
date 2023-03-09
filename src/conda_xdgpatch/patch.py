@@ -35,6 +35,6 @@ def patch() -> None:
     conda.core.envs_manager.get_user_environments_txt_file = get_user_environments_txt_file
 
 
-def patch() -> None:
+def unpatch() -> None:
     """Unpatch the original function."""
     conda.core.envs_manager.get_user_environments_txt_file = pre_patched_value
