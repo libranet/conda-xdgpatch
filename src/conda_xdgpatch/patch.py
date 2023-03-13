@@ -19,15 +19,16 @@ from conda.common.path import expand
 
 pre_patched_value = conda.core.envs_manager.get_user_environments_txt_file
 
-def get_user_environments_txt_file(userhome:str="~") -> str:
+
+def get_user_environments_txt_file(userhome: str = "~") -> str:
     """
     Use ~/.cache/conda/environments.txt instead of
     ~/.conda/environments.txt
 
     /opt/conda/etc/environments.txt
     """
-    cache_dir = os.getenv("XDG_CACHE_HOME", join(userhome, '.cache'))
-    return expand(join(cache_dir, 'conda', 'environments.txt'))
+    cache_dir = os.getenv("XDG_CACHE_HOME", join(userhome, ".cache"))
+    return expand(join(cache_dir, "conda", "environments.txt"))
 
 
 def patch() -> None:
