@@ -56,7 +56,7 @@ jobs:
 
             - name: Pyroma
               run: |
-                  make Pyroma
+                  make pyroma
 
             - name: Check poetry
               run: |
