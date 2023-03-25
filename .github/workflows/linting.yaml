@@ -54,6 +54,10 @@ jobs:
               run: |
                   make mypy
 
+            - name: Pyroma
+              run: |
+                  make Pyroma
+
             - name: Check poetry
               run: |
                   make poetry-check
