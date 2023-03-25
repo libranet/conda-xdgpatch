@@ -101,9 +101,6 @@ black = { version = "^22.1.0", optional = true, allow-prereleases = true }
 flake8 = ">=4.0.1"
 flake8-pyproject = ">=1.2.2"
 isort = ">=5.10.1"
-mypy = ">=0.931"
-pytest = ">=7.0.1"
-pytest-cov = ">=3.0.0"
 pre-commit = ">=2.14.1"
 pre-commit-hooks = ">=4.1.0"
 pylint = ">=2.12.2"
@@ -114,6 +111,18 @@ sphinx-rtd-theme = ">=1.0.0"
 recommonmark = ">=0.7.1"
 sphinx-autoapi = ">=1.8.4"
 autoapi = ">=2.0.1"
+
+[tool.poetry.group.ipython.dependencies]
+ipdb = ">=0.13.9"
+ipython = ">=8.4.0"
+
+[tool.poetry.group.testing.dependencies]
+pytest = ">=7.0.1"
+pytest-cov = ">=3.0.0"
+
+[tool.poetry.group.typing.dependencies]
+lxml = ">=4.9.2" # mypy coverage-report
+mypy = ">=0.931"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/Libranet/conda_xdgpatch/issues"

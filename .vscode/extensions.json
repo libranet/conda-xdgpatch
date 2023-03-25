@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-vscode.makefile-tools",
+        "peakchen90.open-html-in-browser",
+        "yzhang.markdown-all-in-one",
+        "zeshuaro.vscode-python-poetry"
+    ]
+}
