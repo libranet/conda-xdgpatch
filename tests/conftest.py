@@ -49,7 +49,3 @@ Usage:
   > pytest --cov="conda_xdgpatch"  --cov-report=term  --cov-report=html
 
 """
-
-pytest_plugins = [
-    "_helpers",
-]

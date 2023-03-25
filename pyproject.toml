@@ -7,6 +7,10 @@
 # It's the equivalent of r-strings in Python.  Multiline strings are treated as
 # verbose regular expressions by Black.  Use [ ] to denote a significant space
 # character.
+#
+#   > poetry install
+#   > poetry install --only docs
+#   > poetry install (--with|--without) (docs|dev|ipython|profiling|testing|typing)
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -15,8 +19,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 120
-target_version = ["py310"]
 include = '\.py$'          # regex -> single-quotes
+target_version = ["py311"]
 
 
 [tool.coverage.html]
@@ -45,33 +49,34 @@ data_file = "var/coverage/coverage.db" # defaults to .coverage
 [tool.flake8]
 max_line_length = 140
 exclude = "bindings"
-# F401: imported but unused
-per_file_ignores = ["__init__.py:F401"]
+
+per_file_ignores = [
+    "__init__.py:F401", # F401: imported but unused
+]
 
 
 [tool.isort]
+include_trailing_comma = true # corresponds to -tc flag
+known_third_party = []
 line_length = 120             # corresponds to -w  flag
 multi_line_output = 3         # corresponds to -m  flag
-include_trailing_comma = true # corresponds to -tc flag
 skip_glob = '^((?!py$).)*$'   # isort all Python files
-known_third_party = []
 
 
 [tool.mypy]
 # cfr https://mypy.readthedocs.io/en/stable/config_file.html#using-a-pyproject-toml-file
 cache_dir = "var/cache/mypy"
 check_untyped_defs = true
-# disallow_untyped_defs = true
 exclude = "^bin/"
 ignore_missing_imports = true
-# mypy_path = ["./src", "./tests"]
 
 
 [tool.poetry]
 name = "conda_xdgpatch"
 version = "0.0.0" # version managed by poetry-dynamic-versioning
-description = " python-package"
-readme = "docs/readme.rst"
+license = "MIT"
+description = "Patch for conda to use XDG-locations."
+readme = "docs/readme.md"
 authors = ["Wouter Vanden Hove <wouter@libranet.eu>"]
 maintainers = ["Wouter Vanden Hove <wouter@libranet.eu>"]
 repository = "https://github.com/libranet/conda_xdgpatch"
@@ -83,27 +88,34 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: Commercial",
     "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: Pypy",
     "Typing :: Typed",
 ]
-
 packages = [{ include = "conda_xdgpatch", from = "src" }]
 
 
 [tool.poetry.dependencies]
 # These packages are mandatory and form the core of this package’s distribution.
-python = ">=3.9.0"
+python = ">=3.8.0,<4.0"
 sitecustomize-entrypoints = ">=0.1.0"
 
 [tool.poetry.group.dev.dependencies]
-black = { version = "^22.1.0", optional = true, allow-prereleases = true }
+black = { version = ">=22.1.0", optional = true, allow-prereleases = true }
 flake8 = ">=4.0.1"
 flake8-pyproject = ">=1.2.2"
 isort = ">=5.10.1"
 pre-commit = ">=2.14.1"
 pre-commit-hooks = ">=4.1.0"
 pylint = ">=2.12.2"
+
+[tool.poetry.group.dist.dependencies]
+pyroma = ">=4.2"
+twine = ">=4.0.2"
 
 [tool.poetry.group.docs.dependencies]
 Sphinx = ">=4.4.0"
@@ -121,7 +133,7 @@ pytest = ">=7.0.1"
 pytest-cov = ">=3.0.0"
 
 [tool.poetry.group.typing.dependencies]
-lxml = ">=4.9.2" # mypy coverage-report
+lxml = { version = ">=4.9.2", optional = true, allow-prereleases = false } # mypy coverage-report
 mypy = ">=0.931"
 
 [tool.poetry.urls]
@@ -143,7 +155,7 @@ files = ["src/*/__init__.py", "src/*/__version__.py", "docs/changes.rst"]
 [tool.poetry.plugins."sitecustomize"]
 # https://python-poetry.org/docs/pyproject/#plugins
 # https://github.com/Darsstar/sitecustomize-entrypoints/blob/main/src/sitecustomize/__init__.py
-libranet_conda_patch = "conda_xdgpatch.patch:patch"
+conda_xdgpatch = "conda_xdgpatch:patch"
 
 
 [tool.poetry2conda]
@@ -173,6 +185,5 @@ log_cli_level = "NOTSET"
 filterwarnings = []
 markers = ["unit", "integration"]
 testpaths = ["tests"]
-
 # the junit-report is used to report coverage in gitlab
 addopts = "--junit-xml='var/coverage/pytest.xml'"

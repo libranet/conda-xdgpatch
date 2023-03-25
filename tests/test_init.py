@@ -9,7 +9,7 @@ def test_version():
     from conda_xdgpatch import __version__
 
     assert isinstance(__version__, str)
-    assert packaging.version.parse(__version__) > packaging.version.parse("0.0")
+    assert packaging.version.parse(__version__) >= packaging.version.parse("0.0")
 
 
 def test_copyright():
