@@ -1,4 +1,4 @@
-conda_xdgpatch
+conda-xdgpatch
 ==============
 
     readme

@@ -72,15 +72,15 @@ ignore_missing_imports = true
 
 
 [tool.poetry]
-name = "conda_xdgpatch"
-version = "0.1" # version managed by poetry-dynamic-versioning
+name = "conda-xdgpatch"
+version = "0.2" # version managed by poetry-dynamic-versioning
 license = "MIT"
 description = "Patch for conda to use XDG-locations."
 readme = "docs/readme.md"
 authors = ["Wouter Vanden Hove <wouter@libranet.eu>"]
 maintainers = ["Wouter Vanden Hove <wouter@libranet.eu>"]
-repository = "https://github.com/libranet/conda_xdgpatch"
-documentation = "https://github.com/libranet/conda_xdgpatch"
+repository = "https://github.com/libranet/conda-xdgpatch"
+documentation = "https://github.com/libranet/conda-xdgpatch"
 keywords = ["conda", "xdg", "sitecustomize"]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -137,17 +137,17 @@ lxml = { version = ">=4.9.2", optional = true, allow-prereleases = false } # myp
 mypy = ">=0.931"
 
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/Libranet/conda_xdgpatch/issues"
+"Bug Tracker" = "https://github.com/Libranet/conda-xdgpatch/issues"
 
 
-[tool.poetry-dynamic-versioning]
-# cfr https://github.com/mtkennerly/poetry-dynamic-versioning
-enable = true
-vcs = "git"
-style = "semver"
+# [tool.poetry-dynamic-versioning]
+# # cfr https://github.com/mtkennerly/poetry-dynamic-versioning
+# enable = true
+# vcs = "git"
+# style = "semver"
 
-[tool.poetry-dynamic-versioning.substitution]
-files = ["src/*/__init__.py", "src/*/__version__.py", "docs/changes.rst"]
+# [tool.poetry-dynamic-versioning.substitution]
+# files = ["src/*/__init__.py", "src/*/__version__.py", "docs/changes.rst"]
 
 
 [tool.poetry.plugins] # Optional super table

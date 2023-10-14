@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 
+## 0.2 (2023-10-14)
+
+- Do not issue a user-warning if conda is not installed in the same python-environment.
+
+
 ## 0.1 (2023-10-14)
 
 - Register the monkeypatch as a ``sitecustomize-entrypoints``-plugin.

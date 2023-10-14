@@ -4,7 +4,7 @@
 - https://github.com/conda/conda/blob/main/conda/core/envs_manager.py
 
 """
-__version__ = "0.1"
+__version__ = "0.2"
 __copyright__ = "Copyright 2023 Libranet - All rights reserved."
 
 import os
@@ -17,7 +17,9 @@ try:
     pre_patched_value = conda.core.envs_manager.get_user_environments_txt_file
 
 except ModuleNotFoundError:
-    pass
+    # conda is not installed in this python-evironment.
+    pre_patched_value = None
+
 
 
 def get_user_environments_txt_file(userhome: str = "~") -> str:
@@ -32,21 +34,22 @@ def get_user_environments_txt_file(userhome: str = "~") -> str:
     if cache_dir := os.getenv("CONDA_CACHE_DIR"):
         return expand(join(cache_dir, "environments.txt"))
 
-    xdg_cache_dir = os.getenv("XDG_CACHE_HOME", join(userhome, ".cache",))
+    cache_dir = os.getenv("XDG_CACHE_HOME", join(userhome, ".cache",))
     return expand(join(cache_dir, "conda", "environments.txt"))
 
 
 def patch() -> None:
     """Monkeypatch the original function."""
-    try:
-        conda.core.envs_manager.get_user_environments_txt_file = get_user_environments_txt_file
-    except ModuleNotFoundError:
-        pass
+    if not pre_patched_value:
+        return
+
+    conda.core.envs_manager.get_user_environments_txt_file = get_user_environments_txt_file
+
 
 
 def unpatch() -> None:
     """Unpatch the original function."""
-    try:
-        conda.core.envs_manager.get_user_environments_txt_file = pre_patched_value
-    except ModuleNotFoundError:
-        pass
+    if not pre_patched_value:
+        return
+
+    conda.core.envs_manager.get_user_environments_txt_file = pre_patched_value
