@@ -73,7 +73,7 @@ ignore_missing_imports = true
 
 [tool.poetry]
 name = "conda-xdgpatch"
-version = "0.2" # version managed by poetry-dynamic-versioning
+version = "0.3" # version managed by poetry-dynamic-versioning
 license = "MIT"
 description = "Patch for conda to use XDG-locations."
 readme = "docs/readme.md"

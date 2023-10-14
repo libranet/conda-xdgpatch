@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased (YYYY-MM-DD)
+
+- Add read the docs.
+
 
 ## 0.2 (2023-10-14)
 

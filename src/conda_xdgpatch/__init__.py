@@ -4,7 +4,7 @@
 - https://github.com/conda/conda/blob/main/conda/core/envs_manager.py
 
 """
-__version__ = "0.2"
+__version__ = "0.3dev"
 __copyright__ = "Copyright 2023 Libranet - All rights reserved."
 
 import os
