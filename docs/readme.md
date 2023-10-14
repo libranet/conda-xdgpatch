@@ -7,17 +7,13 @@
 
 ## Installation
 
-Install via pip:
+On your base conda-installation, install via pip:
 
 ```bash
-> bin/pip install conda_xdgpatch
+> cd /opt/tools/conda
+> bin/pip install conda-xdgpatch
 ```
 
-Or add to your poetry-based project:
-
-```bash
-> poetry add conda_xdgpatch
-```
 
 
 ## Usage

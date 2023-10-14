@@ -3,7 +3,13 @@
 All notable changes to this project will be documented in this file.
 
 
-## Unreleased (YYYY-MM-DD)
+## 0.1 (2023-10-14)
+
+- Register the monkeypatch as a ``sitecustomize-entrypoints``-plugin.
+
+- Monkey-patch conda's ``conda.core.envs_manager.get_user_environments_txt_file``
+  to use an env-var ``CONDA_CACHE_DIR`` and default to ``XDG_CACHE_HOME`` in order
+  to avoid writing hardcoded to ``~/.conda/environments.txt``.
 
 - Add boilerplate-files to comply with Github's [_Community Standards_](https://github.com/libranet/autoadd-bindir/community)
 

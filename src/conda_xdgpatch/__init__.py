@@ -4,7 +4,7 @@
 - https://github.com/conda/conda/blob/main/conda/core/envs_manager.py
 
 """
-__version__ = "0.0.0"
+__version__ = "0.1"
 __copyright__ = "Copyright 2023 Libranet - All rights reserved."
 
 import os
@@ -22,12 +22,17 @@ except ModuleNotFoundError:
 
 def get_user_environments_txt_file(userhome: str = "~") -> str:
     """
-    Use ~/.cache/conda/environments.txt instead of
+
+    Use env-var CONDA_CACHE_DIR if set,
+    Otherwise use ~/.cache/conda/environments.txt instead of
     ~/.conda/environments.txt
 
     /opt/conda/etc/environments.txt
     """
-    cache_dir = os.getenv("XDG_CACHE_HOME", join(userhome, ".cache"))
+    if cache_dir := os.getenv("CONDA_CACHE_DIR"):
+        return expand(join(cache_dir, "environments.txt"))
+
+    xdg_cache_dir = os.getenv("XDG_CACHE_HOME", join(userhome, ".cache",))
     return expand(join(cache_dir, "conda", "environments.txt"))
 
 
