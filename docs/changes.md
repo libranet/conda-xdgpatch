@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Unreleased (YYYY-MM-DD)
 
 - Add read the docs.
+  See https://conda-xdgpatch.readthedocs.io/en/latest/
 
 
 ## 0.2 (2023-10-14)
